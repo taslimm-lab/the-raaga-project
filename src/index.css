@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primary - Burnt Sienna / Terracotta */
+  --color-primary: #944222;
+  --color-primary-dark: #6e2f17;
+  --color-primary-light: #c06040;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #ffdbc8;
+  --color-on-primary-container: #340f00;
+
+  /* Secondary - Deep Gold */
+  --color-secondary: #7d5700;
+  --color-secondary-dark: #5c4000;
+  --color-secondary-light: #a77200;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #ffdea5;
+  --color-on-secondary-container: #271900;
+
+  /* Tertiary - Forest Green */
+  --color-tertiary: #4a6741;
+  --color-tertiary-dark: #324a2b;
+  --color-tertiary-light: #638a59;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #ccedbe;
+  --color-on-tertiary-container: #07210003;
+
+  /* Error */
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #410002;
+
+  /* Background / Surface */
+  --color-background: #fff8f5;
+  --color-on-background: #211a17;
+  --color-surface: #fff8f5;
+  --color-on-surface: #211a17;
+  --color-surface-variant: #f5ded4;
+  --color-on-surface-variant: #53433d;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #fef1eb;
+  --color-surface-container: #f8ebe4;
+  --color-surface-container-high: #f2e5de;
+  --color-surface-container-highest: #ecdfd8;
+
+  /* Outline */
+  --color-outline: #85736c;
+  --color-outline-variant: #d8c2bb;
+
+  /* Inverse */
+  --color-inverse-surface: #372f2b;
+  --color-inverse-on-surface: #ffeee7;
+  --color-inverse-primary: #ffb596;
+
+  /* Scrim / Shadow */
+  --color-scrim: #000000;
+  --color-shadow: #000000;
+
+  /* Font families */
+  --font-serif: 'EB Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* Spacing tokens */
+  --spacing-18: 4.5rem;
+  --spacing-22: 5.5rem;
+  --spacing-26: 6.5rem;
+  --spacing-30: 7.5rem;
+
+  /* Text sizes */
+  --text-display-large: 3.5625rem;
+  --text-display-medium: 2.8125rem;
+  --text-display-small: 2.25rem;
+  --text-headline-large: 2rem;
+  --text-headline-medium: 1.75rem;
+  --text-headline-small: 1.5rem;
+  --text-title-large: 1.375rem;
+  --text-title-medium: 1rem;
+  --text-title-small: 0.875rem;
+  --text-body-large: 1rem;
+  --text-body-medium: 0.875rem;
+  --text-body-small: 0.75rem;
+  --text-label-large: 0.875rem;
+  --text-label-medium: 0.75rem;
+  --text-label-small: 0.6875rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+}
+
+.mandala-pattern {
+  background-image: radial-gradient(circle at 50% 50%, rgba(148, 66, 34, 0.08) 0%, transparent 70%),
+    repeating-conic-gradient(from 0deg at 50% 50%, rgba(148, 66, 34, 0.04) 0deg, transparent 10deg, transparent 30deg, rgba(148, 66, 34, 0.04) 40deg);
+}
+
+.glass-card {
+  background: rgba(255, 248, 245, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(216, 194, 187, 0.5);
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.sitar-string-bg {
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 60px,
+    rgba(148, 66, 34, 0.06) 60px,
+    rgba(148, 66, 34, 0.06) 61px
+  );
+}
+
+.mandala-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 50% 50%, rgba(148, 66, 34, 0.06) 0%, transparent 60%),
+    repeating-conic-gradient(from 45deg at 50% 50%, rgba(148, 66, 34, 0.03) 0deg, transparent 15deg, transparent 45deg, rgba(148, 66, 34, 0.03) 60deg);
+  pointer-events: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.mandala-bg {
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(148, 66, 34, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(125, 87, 0, 0.08) 0%, transparent 40%);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--color-surface-container);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-outline-variant);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-outline);
+}
