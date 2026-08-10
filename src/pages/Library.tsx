@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { ALL_RAGAS, ALL_THAATS } from '../data/raagasData'
+import AdSlot from '../components/AdSlot'
 
 const PRAHARS = [
   { label: 'Dawn', icon: '🌅', times: ['Early Morning', 'Morning'] },
@@ -167,6 +168,9 @@ export default function Library() {
         </div>
       )}
 
+      {/* Ad — above table */}
+      <AdSlot slotId="1234567892" format="horizontal" />
+
       {/* Table */}
       <div className="rounded-2xl border border-outline-variant overflow-hidden">
         <table className="w-full text-sm">
@@ -247,6 +251,9 @@ export default function Library() {
           </button>
         </div>
       )}
+
+      {/* Ad — below pagination */}
+      <AdSlot slotId="1234567893" format="responsive" />
     </div>
   )
 }

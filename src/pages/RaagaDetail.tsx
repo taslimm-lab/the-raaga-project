@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { ALL_RAGAS } from '../data/raagasData'
 import { RAGA_FILM_SONGS } from '../data/ragaFilmSongs'
 import { youtubeRagaUrl, youtubeSongUrl } from '../data/utils'
+import AdSlot from '../components/AdSlot'
 
 export default function RaagaDetail() {
   const { id } = useParams<{ id: string }>()
@@ -179,6 +180,9 @@ export default function RaagaDetail() {
           </section>
         )}
 
+        {/* Ad — between quiz and film songs */}
+        <AdSlot slotId="1234567894" format="horizontal" />
+
         {/* Cinematic Echoes — Film Songs */}
         {songs.length > 0 && (
           <section className="py-8 border-t border-outline-variant">
@@ -220,6 +224,9 @@ export default function RaagaDetail() {
             </div>
           </section>
         )}
+
+        {/* Ad — between film songs and related ragas */}
+        <AdSlot slotId="1234567895" format="rectangle" />
 
         {/* Related Ragas */}
         {related.length > 0 && (

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ALL_RAGAS } from '../data/raagasData'
 import { RAGA_FILM_SONGS } from '../data/ragaFilmSongs'
 import { youtubeSongUrl } from '../data/utils'
+import AdSlot from '../components/AdSlot'
 
 const RAAGA_OF_DAY = ALL_RAGAS.find(r => r.id === 'yaman')!
 
@@ -106,6 +107,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Ad — between hero feature and Bollywood section */}
+      <div className="max-w-4xl mx-auto px-6">
+        <AdSlot slotId="1234567890" format="horizontal" />
+      </div>
+
       {/* Bollywood Connections */}
       <section className="py-16 px-6 bg-surface-container-low">
         <div className="max-w-7xl mx-auto">
@@ -149,6 +155,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Ad — between Bollywood section and stats */}
+      <div className="max-w-4xl mx-auto px-6">
+        <AdSlot slotId="1234567891" format="horizontal" />
+      </div>
 
       {/* CTA Stats */}
       <section className="py-20 px-6 mandala-bg">
