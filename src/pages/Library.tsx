@@ -75,7 +75,7 @@ export default function Library() {
       {/* Header */}
       <div className="mb-8">
         <p className="text-xs text-primary uppercase tracking-wider font-medium mb-1">The Complete Archive</p>
-        <h1 className="font-serif text-4xl font-semibold text-on-background">Raaga Library</h1>
+        <h1 className="font-serif text-4xl font-semibold text-on-background">Raag Library</h1>
         <p className="text-on-surface-variant mt-2">{ALL_RAGAS.length} ragas documented across {ALL_THAATS.length} thaats</p>
       </div>
 

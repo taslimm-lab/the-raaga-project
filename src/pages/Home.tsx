@@ -22,7 +22,7 @@ export default function Home() {
         <div className="relative z-10 text-center px-6 py-20 max-w-3xl mx-auto">
           <p className="text-sm font-medium text-primary mb-3 tracking-widest uppercase">Welcome to</p>
           <h1 className="font-serif text-5xl md:text-7xl font-semibold text-on-background mb-6 leading-tight">
-            The Raaga<br />
+            The Raag<br />
             <span className="text-primary">Project</span>
           </h1>
           <p className="text-lg text-on-surface-variant max-w-xl mx-auto mb-10">
@@ -39,18 +39,18 @@ export default function Home() {
               to="/raaga/bhairavi"
               className="px-8 py-3 border border-outline rounded-full font-medium text-on-surface hover:bg-surface-container-high transition-colors"
             >
-              Featured Raaga
+              Featured Raag
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Raaga of the Day */}
+      {/* Raag of the Day */}
       <section className="py-16 px-6 max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div>
             <p className="text-xs font-medium text-primary uppercase tracking-wider mb-1">Daily Feature</p>
-            <h2 className="font-serif text-3xl font-semibold text-on-background">Raaga of the Day</h2>
+            <h2 className="font-serif text-3xl font-semibold text-on-background">Raag of the Day</h2>
           </div>
         </div>
 

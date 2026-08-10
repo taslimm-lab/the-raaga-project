@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 const CONTRIBUTION_TYPES = [
-  { id: 'new-raaga', label: 'New Raaga', icon: 'music_note', desc: 'Document a raga not yet in the library' },
+  { id: 'new-raaga', label: 'New Raag', icon: 'music_note', desc: 'Document a raga not yet in the library' },
   { id: 'regional-variant', label: 'Regional Variant', icon: 'fork_right', desc: 'A regional or school-specific variation' },
   { id: 'archival-recording', label: 'Archival Recording', icon: 'library_music', desc: 'Historical or rare recordings' },
   { id: 'notation-correction', label: 'Notation Correction', icon: 'edit', desc: 'Fix inaccuracies in existing entries' },

@@ -20,7 +20,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto w-full px-6 flex items-center gap-6 h-16">
           <Link to="/" className="flex items-center gap-2 mr-4">
             <span className="text-2xl">🎵</span>
-            <span className="font-serif font-semibold text-xl text-primary">The Raaga Project</span>
+            <span className="font-serif font-semibold text-xl text-primary">The Raag Project</span>
           </Link>
 
           <nav className="flex items-center gap-1 flex-1">
@@ -61,7 +61,7 @@ export default function Header() {
             <span className="material-symbols-outlined text-on-surface-variant">menu</span>
           </button>
           <Link to="/" className="flex items-center gap-2">
-            <span className="font-serif font-semibold text-lg text-primary">The Raaga Project</span>
+            <span className="font-serif font-semibold text-lg text-primary">The Raag Project</span>
           </Link>
           <button className="p-2 rounded-full hover:bg-surface-container-high transition-colors">
             <span className="material-symbols-outlined text-on-surface-variant">notifications</span>

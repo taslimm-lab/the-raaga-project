@@ -8,10 +8,10 @@ export default function Footer() {
           <div>
             <Link to="/" className="flex items-center gap-2">
               <span className="text-xl">🎵</span>
-              <span className="font-serif font-semibold text-lg text-primary">The Raaga Project</span>
+              <span className="font-serif font-semibold text-lg text-primary">The Raag Project</span>
             </Link>
             <p className="text-sm text-on-surface-variant mt-1">Where Heritage Meets Melody</p>
-            <p className="text-xs text-on-surface-variant/60 mt-2">© {new Date().getFullYear()} The Raaga Project. All rights reserved.</p>
+            <p className="text-xs text-on-surface-variant/60 mt-2">© {new Date().getFullYear()} The Raag Project. All rights reserved.</p>
           </div>
 
           <nav className="flex items-center gap-6">
