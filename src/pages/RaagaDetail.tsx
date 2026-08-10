@@ -181,7 +181,7 @@ export default function RaagaDetail() {
         )}
 
         {/* Ad — between quiz and film songs */}
-        <AdSlot slotId="1234567894" format="horizontal" />
+        <AdSlot slotId="6585607102" format="horizontal" />
 
         {/* Cinematic Echoes — Film Songs */}
         {songs.length > 0 && (
@@ -226,7 +226,7 @@ export default function RaagaDetail() {
         )}
 
         {/* Ad — between film songs and related ragas */}
-        <AdSlot slotId="1234567895" format="rectangle" />
+        <AdSlot slotId="7084300558" format="rectangle" />
 
         {/* Related Ragas */}
         {related.length > 0 && (

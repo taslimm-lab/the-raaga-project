@@ -109,7 +109,7 @@ export default function Home() {
 
       {/* Ad — between hero feature and Bollywood section */}
       <div className="max-w-4xl mx-auto px-6">
-        <AdSlot slotId="1234567890" format="horizontal" />
+        <AdSlot slotId="4342587145" format="horizontal" />
       </div>
 
       {/* Bollywood Connections */}
@@ -158,7 +158,7 @@ export default function Home() {
 
       {/* Ad — between Bollywood section and stats */}
       <div className="max-w-4xl mx-auto px-6">
-        <AdSlot slotId="1234567891" format="horizontal" />
+        <AdSlot slotId="9403342136" format="horizontal" />
       </div>
 
       {/* CTA Stats */}

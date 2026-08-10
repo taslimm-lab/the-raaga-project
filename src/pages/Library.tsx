@@ -169,7 +169,7 @@ export default function Library() {
       )}
 
       {/* Ad — above table */}
-      <AdSlot slotId="1234567892" format="horizontal" />
+      <AdSlot slotId="6175523505" format="horizontal" />
 
       {/* Table */}
       <div className="rounded-2xl border border-outline-variant overflow-hidden">
@@ -253,7 +253,7 @@ export default function Library() {
       )}
 
       {/* Ad — below pagination */}
-      <AdSlot slotId="1234567893" format="responsive" />
+      <AdSlot slotId="9710463891" format="responsive" />
     </div>
   )
 }
