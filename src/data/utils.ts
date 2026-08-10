@@ -41,6 +41,20 @@ export function avatarForRaga(ragaName: string): string {
   )}`
 }
 
+// Replace these with your real affiliate tracking tags once approved
+const AMAZON_AFFILIATE_TAG = 'raaproject-20'
+const APPLE_AFFILIATE_TOKEN = 'YOUR_APPLE_TOKEN'
+
+export function amazonMusicSongUrl(title: string, movie: string): string {
+  const query = `${title} ${movie}`
+  return `https://music.amazon.com/search/${encodeURIComponent(query)}?tag=${AMAZON_AFFILIATE_TAG}`
+}
+
+export function appleMusicSongUrl(title: string, movie: string): string {
+  const query = `${title} ${movie}`
+  return `https://music.apple.com/search?term=${encodeURIComponent(query)}&at=${APPLE_AFFILIATE_TOKEN}`
+}
+
 export function youtubeRagaUrl(ragaName: string): string {
   const query = `${ragaName} raga classical Indian music`
   return `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`

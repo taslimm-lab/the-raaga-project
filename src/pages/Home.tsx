@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ALL_RAGAS } from '../data/raagasData'
 import { RAGA_FILM_SONGS } from '../data/ragaFilmSongs'
-import { youtubeSongUrl } from '../data/utils'
+import { youtubeSongUrl, amazonMusicSongUrl, appleMusicSongUrl } from '../data/utils'
 import AdSlot from '../components/AdSlot'
 
 const RAAGA_OF_DAY = ALL_RAGAS.find(r => r.id === 'yaman')!
@@ -132,22 +132,40 @@ export default function Home() {
                 </div>
                 <h3 className="font-serif text-lg font-medium text-on-surface mb-1">{item.title}</h3>
                 <p className="text-sm text-on-surface-variant mb-4">{item.movie}</p>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 flex-wrap">
                   <a
                     href={youtubeSongUrl(item.title, item.movie)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-xs text-primary hover:underline"
+                    className="flex items-center gap-1 text-xs text-primary hover:underline"
                   >
-                    <span className="material-symbols-outlined text-[16px]">play_circle</span>
-                    Listen
+                    <span className="material-symbols-outlined text-[15px]">play_circle</span>
+                    YouTube
+                  </a>
+                  <a
+                    href={amazonMusicSongUrl(item.title, item.movie)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-xs text-[#FF9900] hover:underline"
+                  >
+                    <span className="material-symbols-outlined text-[15px]">music_note</span>
+                    Amazon
+                  </a>
+                  <a
+                    href={appleMusicSongUrl(item.title, item.movie)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-xs text-[#FC3C44] hover:underline"
+                  >
+                    <span className="material-symbols-outlined text-[15px]">music_note</span>
+                    Apple
                   </a>
                   <Link
                     to={`/raaga/${item.ragaId}`}
-                    className="flex items-center gap-1.5 text-xs text-on-surface-variant hover:text-primary transition-colors"
+                    className="flex items-center gap-1 text-xs text-on-surface-variant hover:text-primary transition-colors ml-auto"
                   >
-                    <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-                    Explore Raga
+                    <span className="material-symbols-outlined text-[15px]">arrow_forward</span>
+                    Explore
                   </Link>
                 </div>
               </div>
