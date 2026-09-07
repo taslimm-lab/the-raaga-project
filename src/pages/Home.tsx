@@ -6,8 +6,7 @@ import { youtubeSongUrl, amazonMusicSongUrl, appleMusicSongUrl } from '../data/u
 import AdSlot from '../components/AdSlot'
 import NewsletterSignup from '../components/NewsletterSignup'
 import { usePageMeta } from '../hooks/usePageMeta'
-
-const RAAGA_OF_DAY = ALL_RAGAS.find(r => r.id === 'yaman')!
+import { useRagaOfDay } from '../hooks/useRagaOfDay'
 
 const BOLLYWOOD_CONNECTIONS = [
   { title: 'Tujhe Dekha To Yeh Jaana Sanam', movie: 'DDLJ', year: 1995, raga: 'Yaman', ragaId: 'yaman' },
@@ -20,6 +19,7 @@ const totalSongs = Object.values(RAGA_FILM_SONGS).flat().length
 export default function Home() {
   const navigate = useNavigate()
   const [heroSearch, setHeroSearch] = useState('')
+  const RAAGA_OF_DAY = useRagaOfDay()
 
   function handleSearch(e: React.FormEvent) {
     e.preventDefault()

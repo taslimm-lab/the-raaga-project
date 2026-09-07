@@ -5,6 +5,7 @@ import { RAGA_FILM_SONGS } from '../data/ragaFilmSongs'
 import { youtubeRagaUrl, youtubeSongUrl, amazonMusicSongUrl, appleMusicSongUrl } from '../data/utils'
 import AdSlot from '../components/AdSlot'
 import JsonLd from '../components/JsonLd'
+import ShareButton from '../components/ShareButton'
 import { usePageMeta } from '../hooks/usePageMeta'
 
 export default function RaagaDetail() {
@@ -79,6 +80,15 @@ export default function RaagaDetail() {
             {raga.tagline && <p className="text-white/70 italic font-serif text-lg">{raga.tagline}</p>}
           </div>
         </div>
+        {/* Share button */}
+        <div className="absolute top-4 right-4">
+          <ShareButton
+            title={`${raga.name} — The Raag Project`}
+            text={`Explore ${raga.name}, a ${raga.time.toLowerCase()} raga of ${raga.thaat} thaat`}
+            className="bg-black/30 text-white hover:bg-black/50"
+          />
+        </div>
+
         {/* Breadcrumb */}
         <div className="absolute top-4 left-4 flex items-center gap-1 bg-black/30 backdrop-blur rounded-full px-3 py-1.5 text-white text-xs">
           <Link to="/" className="hover:text-white/80 transition-colors">Home</Link>

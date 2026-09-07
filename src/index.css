@@ -85,6 +85,31 @@
   --text-label-small: 0.6875rem;
 }
 
+/* Dark mode overrides */
+[data-theme="dark"] {
+  --color-background: #1a1210;
+  --color-on-background: #ecdfd8;
+  --color-surface: #1a1210;
+  --color-on-surface: #ecdfd8;
+  --color-surface-variant: #2e2320;
+  --color-on-surface-variant: #c9b0a7;
+  --color-surface-container-lowest: #120d0b;
+  --color-surface-container-low: #211815;
+  --color-surface-container: #261d1a;
+  --color-surface-container-high: #2e2320;
+  --color-surface-container-highest: #392925;
+  --color-outline: #a08880;
+  --color-outline-variant: #52403a;
+  --color-primary: #ffb596;
+  --color-on-primary: #561f04;
+  --color-primary-container: #732b0e;
+  --color-on-primary-container: #ffdbc8;
+  --color-secondary: #fabe67;
+  --color-on-secondary: #422c00;
+  --color-secondary-container: #5f4100;
+  --color-on-secondary-container: #ffdea5;
+}
+
 * {
   box-sizing: border-box;
 }

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import ShareButton from './ShareButton'
 
 export default function Footer() {
   return (
@@ -23,12 +24,11 @@ export default function Footer() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <button className="p-2 rounded-full hover:bg-surface-container-high transition-colors" title="Share">
-              <span className="material-symbols-outlined text-on-surface-variant text-[20px]">share</span>
-            </button>
-            <button className="p-2 rounded-full hover:bg-surface-container-high transition-colors" title="Language">
-              <span className="material-symbols-outlined text-on-surface-variant text-[20px]">language</span>
-            </button>
+            <ShareButton
+              title="The Raag Project"
+              text="Discover Indian classical ragas and their Bollywood connections"
+              url="https://the-raaga-project.vercel.app"
+            />
           </div>
         </div>
       </div>

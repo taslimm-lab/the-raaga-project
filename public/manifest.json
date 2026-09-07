@@ -1,0 +1,37 @@
+{
+  "name": "The Raag Project",
+  "short_name": "Raag Project",
+  "description": "The most comprehensive guide to Indian classical ragas and Bollywood connections.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff8f5",
+  "theme_color": "#944222",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["music", "education", "entertainment"],
+  "shortcuts": [
+    {
+      "name": "Raag Library",
+      "url": "/library",
+      "description": "Browse all 174 ragas"
+    },
+    {
+      "name": "Featured Raag",
+      "url": "/raaga/bhairavi",
+      "description": "Explore Bhairavi"
+    }
+  ]
+}
