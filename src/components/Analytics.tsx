@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
 // Replace with your GA4 Measurement ID (format: G-XXXXXXXXXX)
-const GA_ID = 'G-XXXXXXXXXX'
+const GA_ID = 'G-5DDNRKK6WD'
 
 declare global {
   interface Window {
@@ -28,12 +28,10 @@ export default function Analytics() {
   const location = useLocation()
 
   useEffect(() => {
-    if (GA_ID === 'G-XXXXXXXXXX') return
     loadGA()
   }, [])
 
   useEffect(() => {
-    if (GA_ID === 'G-XXXXXXXXXX') return
     if (typeof window.gtag !== 'function') return
     window.gtag('event', 'page_view', {
       page_path: location.pathname + location.search,
