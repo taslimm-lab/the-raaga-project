@@ -1,8 +1,10 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { ALL_RAGAS } from '../data/raagasData'
 import { RAGA_FILM_SONGS } from '../data/ragaFilmSongs'
 import { youtubeSongUrl, amazonMusicSongUrl, appleMusicSongUrl } from '../data/utils'
 import AdSlot from '../components/AdSlot'
+import NewsletterSignup from '../components/NewsletterSignup'
 import { usePageMeta } from '../hooks/usePageMeta'
 
 const RAAGA_OF_DAY = ALL_RAGAS.find(r => r.id === 'yaman')!
@@ -16,6 +18,14 @@ const BOLLYWOOD_CONNECTIONS = [
 const totalSongs = Object.values(RAGA_FILM_SONGS).flat().length
 
 export default function Home() {
+  const navigate = useNavigate()
+  const [heroSearch, setHeroSearch] = useState('')
+
+  function handleSearch(e: React.FormEvent) {
+    e.preventDefault()
+    if (heroSearch.trim()) navigate(`/library?q=${encodeURIComponent(heroSearch.trim())}`)
+  }
+
   usePageMeta({
     title: 'The Raag Project — Indian Classical Ragas & Bollywood Connections',
     description: 'The most comprehensive guide to Indian classical ragas. Explore 174+ ragas, their musical anatomy, legends, emotional qualities, and connections to Bollywood film songs.',
@@ -32,20 +42,41 @@ export default function Home() {
             The Raag<br />
             <span className="text-primary">Project</span>
           </h1>
-          <p className="text-lg text-on-surface-variant max-w-xl mx-auto mb-10">
+          <p className="text-lg text-on-surface-variant max-w-xl mx-auto mb-8">
             Discover the ancient soul of Indian classical music — explore ragas, uncover their Bollywood echoes, and deepen your connection to a living tradition.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <form onSubmit={handleSearch} className="flex items-center gap-2 max-w-md mx-auto mb-6">
+            <div className="flex-1 relative">
+              <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+              <input
+                type="text"
+                value={heroSearch}
+                onChange={e => setHeroSearch(e.target.value)}
+                placeholder="Search a raga — Yaman, Bhairavi…"
+                className="w-full pl-10 pr-4 py-3 rounded-full border border-outline bg-surface/80 backdrop-blur text-on-surface text-sm outline-none focus:ring-2 focus:ring-primary transition-colors"
+              />
+            </div>
+            <button
+              type="submit"
+              className="px-5 py-3 bg-primary text-on-primary rounded-full font-medium text-sm hover:bg-primary-dark transition-colors shadow-lg shrink-0"
+            >
+              Search
+            </button>
+          </form>
+          <div className="flex items-center justify-center gap-4">
             <Link
               to="/library"
-              className="px-8 py-3 bg-primary text-on-primary rounded-full font-medium hover:bg-primary-dark transition-colors shadow-lg"
+              className="text-sm text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1"
             >
-              Explore the Library
+              <span className="material-symbols-outlined text-[16px]">library_music</span>
+              Browse all 174 ragas
             </Link>
+            <span className="text-on-surface-variant/30">·</span>
             <Link
               to="/raaga/bhairavi"
-              className="px-8 py-3 border border-outline rounded-full font-medium text-on-surface hover:bg-surface-container-high transition-colors"
+              className="text-sm text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1"
             >
+              <span className="material-symbols-outlined text-[16px]">star</span>
               Featured Raag
             </Link>
           </div>
@@ -180,7 +211,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Ad — between Bollywood section and stats */}
+      {/* Newsletter */}
+      <NewsletterSignup />
+
+      {/* Ad — between newsletter and stats */}
       <div className="max-w-4xl mx-auto px-6">
         <AdSlot slotId="9403342136" format="horizontal" />
       </div>

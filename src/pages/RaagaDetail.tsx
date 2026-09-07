@@ -79,17 +79,22 @@ export default function RaagaDetail() {
             {raga.tagline && <p className="text-white/70 italic font-serif text-lg">{raga.tagline}</p>}
           </div>
         </div>
-        <Link to="/library" className="absolute top-4 left-4 p-2 bg-black/30 backdrop-blur rounded-full text-white hover:bg-black/50 transition-colors">
-          <span className="material-symbols-outlined text-[20px]">arrow_back</span>
-        </Link>
+        {/* Breadcrumb */}
+        <div className="absolute top-4 left-4 flex items-center gap-1 bg-black/30 backdrop-blur rounded-full px-3 py-1.5 text-white text-xs">
+          <Link to="/" className="hover:text-white/80 transition-colors">Home</Link>
+          <span className="opacity-50">/</span>
+          <Link to="/library" className="hover:text-white/80 transition-colors">Library</Link>
+          <span className="opacity-50">/</span>
+          <span className="opacity-80 truncate max-w-[120px]">{raga.name}</span>
+        </div>
       </div>
 
       <div className="max-w-4xl mx-auto px-4 md:px-6">
 
         {/* Musical Anatomy */}
-        <section className="py-10">
-          <h2 className="font-serif text-2xl font-semibold text-on-background mb-6">Musical Anatomy</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <section className="py-8 md:py-10">
+          <h2 className="font-serif text-xl md:text-2xl font-semibold text-on-background mb-4 md:mb-6">Musical Anatomy</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
             {[
               { label: 'Thaat', value: raga.thaat },
               { label: 'Jati', value: raga.jati },
@@ -98,22 +103,22 @@ export default function RaagaDetail() {
               { label: 'Samvadi', value: raga.samvadi },
               { label: 'Nature', value: raga.nature },
             ].map(item => (
-              <div key={item.label} className="bg-surface-container rounded-2xl p-4">
-                <p className="text-xs text-on-surface-variant uppercase tracking-wider mb-1">{item.label}</p>
-                <p className="font-medium text-on-surface">{item.value}</p>
+              <div key={item.label} className="bg-surface-container rounded-2xl p-3 md:p-4">
+                <p className="text-[10px] md:text-xs text-on-surface-variant uppercase tracking-wider mb-1">{item.label}</p>
+                <p className="font-medium text-on-surface text-sm md:text-base">{item.value}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-4 space-y-3">
+          <div className="mt-3 md:mt-4 space-y-2 md:space-y-3">
             {[
               { label: 'Arohana (Ascent)', value: raga.arohana },
               { label: 'Avarohana (Descent)', value: raga.avarohana },
               { label: 'Pakad (Characteristic Phrase)', value: raga.pakad },
             ].map(item => (
-              <div key={item.label} className="bg-surface-container rounded-2xl p-4">
-                <p className="text-xs text-on-surface-variant uppercase tracking-wider mb-1">{item.label}</p>
-                <p className="font-mono text-primary font-medium tracking-wide">{item.value}</p>
+              <div key={item.label} className="bg-surface-container rounded-2xl p-3 md:p-4">
+                <p className="text-[10px] md:text-xs text-on-surface-variant uppercase tracking-wider mb-1">{item.label}</p>
+                <p className="font-mono text-primary font-medium tracking-wide text-sm md:text-base break-all">{item.value}</p>
               </div>
             ))}
           </div>
@@ -121,17 +126,17 @@ export default function RaagaDetail() {
 
         {/* Description */}
         {raga.description && (
-          <section className="py-6 border-t border-outline-variant">
-            <p className="text-on-surface-variant leading-relaxed text-base">{raga.description}</p>
+          <section className="py-5 md:py-6 border-t border-outline-variant">
+            <p className="text-on-surface-variant leading-relaxed text-sm md:text-base">{raga.description}</p>
           </section>
         )}
 
         {/* Legend & Lore */}
         {raga.legend && (
-          <section className="py-8 border-t border-outline-variant">
-            <h2 className="font-serif text-2xl font-semibold text-on-background mb-4">Legend & Lore</h2>
-            <div className="bg-primary-container/30 border-l-4 border-primary rounded-r-2xl p-6">
-              <p className="text-on-surface-variant leading-relaxed">{raga.legend}</p>
+          <section className="py-6 md:py-8 border-t border-outline-variant">
+            <h2 className="font-serif text-xl md:text-2xl font-semibold text-on-background mb-4">Legend & Lore</h2>
+            <div className="bg-primary-container/30 border-l-4 border-primary rounded-r-2xl p-4 md:p-6">
+              <p className="text-on-surface-variant leading-relaxed text-sm md:text-base">{raga.legend}</p>
             </div>
           </section>
         )}
