@@ -22,6 +22,7 @@ export default function Footer() {
             <Link to="/thaats" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Thaat Explorer</Link>
             <Link to="/compare" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Compare Ragas</Link>
             <Link to="/quiz" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Raga Quiz</Link>
+            <Link to="/timeline" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Raga Timeline</Link>
             <Link to="/favorites" className="text-sm text-on-surface-variant hover:text-primary transition-colors">My Saved Ragas</Link>
             <Link to="/contribute" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Contribute</Link>
             <Link to="/privacy" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Privacy Policy</Link>

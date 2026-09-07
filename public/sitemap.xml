@@ -31,6 +31,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://the-raaga-project.vercel.app/timeline</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://the-raaga-project.vercel.app/favorites</loc>
     <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>

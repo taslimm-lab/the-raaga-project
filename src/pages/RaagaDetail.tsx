@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { ALL_RAGAS } from '../data/raagasData'
 import { RAGA_FILM_SONGS } from '../data/ragaFilmSongs'
@@ -19,6 +19,8 @@ export default function RaagaDetail() {
   const [quizAnswered, setQuizAnswered] = useState<Record<number, number>>({})
   const [isPlaying, setIsPlaying] = useState(false)
   const [miniPlayerSong, setMiniPlayerSong] = useState<{ title: string; movie: string } | null>(null)
+  const [embedOpen, setEmbedOpen] = useState(false)
+  const embedRef = useRef<HTMLDivElement>(null)
   const { addRecent } = useRecentlyViewed()
 
   useEffect(() => { if (id) addRecent(id) }, [id])
@@ -69,7 +71,7 @@ export default function RaagaDetail() {
       {/* Hero */}
       <div className="relative h-72 md:h-96 overflow-hidden">
         {raga.heroImage ? (
-          <img src={raga.heroImage} alt={raga.name} className="w-full h-full object-cover" />
+          <img src={raga.heroImage} alt={raga.name} loading="eager" decoding="async" className="w-full h-full object-cover" />
         ) : (
           <div className="w-full h-full" style={{ background: 'linear-gradient(135deg, #944222 0%, #7d5700 50%, #4a6741 100%)' }} />
         )}
@@ -352,17 +354,57 @@ export default function RaagaDetail() {
         </div>
       )}
 
-      {/* YouTube search link */}
-      <div className="max-w-4xl mx-auto px-4 md:px-6 pb-8">
-        <a
-          href={youtubeRagaUrl(raga.name)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 text-sm text-primary hover:underline"
-        >
-          <span className="material-symbols-outlined text-[18px]">open_in_new</span>
-          Search "{raga.name}" classical performances on YouTube
-        </a>
+      {/* Inline YouTube Preview */}
+      <div className="max-w-4xl mx-auto px-4 md:px-6 pb-10">
+        <div ref={embedRef} className="rounded-2xl border border-outline-variant overflow-hidden">
+          <button
+            onClick={() => setEmbedOpen(o => !o)}
+            className="w-full flex items-center justify-between px-5 py-4 hover:bg-surface-container-low transition-colors"
+          >
+            <div className="flex items-center gap-3">
+              <span className="w-9 h-9 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+                <span className="material-symbols-outlined text-primary text-[20px]">play_circle</span>
+              </span>
+              <div className="text-left">
+                <p className="text-sm font-medium text-on-surface">Watch Classical Performances</p>
+                <p className="text-xs text-on-surface-variant">Browse "{raga.name}" on YouTube — opens without leaving</p>
+              </div>
+            </div>
+            <span
+              className="material-symbols-outlined text-on-surface-variant text-[22px] transition-transform shrink-0"
+              style={{ transform: embedOpen ? 'rotate(180deg)' : '' }}
+            >
+              expand_more
+            </span>
+          </button>
+
+          {embedOpen && (
+            <div className="border-t border-outline-variant bg-surface-container-low">
+              <div className="aspect-video w-full">
+                <iframe
+                  src={`https://www.youtube.com/embed?listType=search&list=${encodeURIComponent(raga.name + ' classical raga')}&autoplay=0`}
+                  title={`${raga.name} classical performances`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
+                  className="w-full h-full"
+                />
+              </div>
+              <div className="px-5 py-3 flex items-center justify-between">
+                <p className="text-xs text-on-surface-variant">Showing YouTube search results for "{raga.name} classical raga"</p>
+                <a
+                  href={youtubeRagaUrl(raga.name)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-xs text-primary hover:underline shrink-0"
+                >
+                  <span className="material-symbols-outlined text-[14px]">open_in_new</span>
+                  Open on YouTube
+                </a>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

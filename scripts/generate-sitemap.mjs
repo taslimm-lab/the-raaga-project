@@ -31,6 +31,7 @@ const staticRoutes = [
   { path: '/thaats', priority: '0.8', changefreq: 'monthly' },
   { path: '/compare', priority: '0.7', changefreq: 'monthly' },
   { path: '/quiz', priority: '0.7', changefreq: 'monthly' },
+  { path: '/timeline', priority: '0.7', changefreq: 'monthly' },
   { path: '/favorites', priority: '0.4', changefreq: 'monthly' },
   { path: '/contribute', priority: '0.5', changefreq: 'monthly' },
   { path: '/privacy', priority: '0.3', changefreq: 'yearly' },

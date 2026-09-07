@@ -1,7 +1,9 @@
+import { useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import SearchAutocomplete from './SearchAutocomplete'
 import { useTheme } from '../hooks/useTheme'
 import { ALL_RAGAS } from '../data/raagasData'
+import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts'
 
 function surpriseMe(navigate: ReturnType<typeof useNavigate>) {
   const raga = ALL_RAGAS[Math.floor(Math.random() * ALL_RAGAS.length)]
@@ -11,6 +13,12 @@ function surpriseMe(navigate: ReturnType<typeof useNavigate>) {
 export default function Header() {
   const { theme, toggle } = useTheme()
   const navigate = useNavigate()
+  const searchRef = useRef<HTMLInputElement>(null)
+  const [moreOpen, setMoreOpen] = useState(false)
+
+  useKeyboardShortcuts({
+    onOpenSearch: () => searchRef.current?.focus(),
+  })
 
   return (
     <>
@@ -35,9 +43,31 @@ export default function Header() {
             <Link to="/quiz" className="px-3 py-2 rounded-full text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">
               Quiz
             </Link>
-            <Link to="/favorites" className="px-3 py-2 rounded-full text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">
-              Saved
-            </Link>
+            {/* More dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setMoreOpen(o => !o)}
+                className="px-3 py-2 rounded-full text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-0.5"
+              >
+                More
+                <span className="material-symbols-outlined text-[16px]">expand_more</span>
+              </button>
+              {moreOpen && (
+                <div
+                  className="absolute top-full left-0 mt-1 w-40 bg-surface-container border border-outline-variant rounded-xl shadow-lg overflow-hidden z-50"
+                  onMouseLeave={() => setMoreOpen(false)}
+                >
+                  <Link to="/timeline" onClick={() => setMoreOpen(false)} className="flex items-center gap-2 px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                    <span className="material-symbols-outlined text-[16px]">timeline</span>
+                    Timeline
+                  </Link>
+                  <Link to="/favorites" onClick={() => setMoreOpen(false)} className="flex items-center gap-2 px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                    <span className="material-symbols-outlined text-[16px]">favorite</span>
+                    Saved
+                  </Link>
+                </div>
+              )}
+            </div>
           </nav>
 
           <button
@@ -49,7 +79,7 @@ export default function Header() {
             Surprise Me
           </button>
 
-          <SearchAutocomplete className="w-48" />
+          <SearchAutocomplete className="w-48" inputRef={searchRef} />
 
           <button
             onClick={toggle}

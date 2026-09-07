@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import BottomNav from './components/BottomNav'
+import BackToTop from './components/BackToTop'
 import ErrorBoundary from './components/ErrorBoundary'
 import Analytics from './components/Analytics'
 
@@ -15,6 +16,7 @@ const Compare = lazy(() => import('./pages/Compare'))
 const Favorites = lazy(() => import('./pages/Favorites'))
 const ThaatExplorer = lazy(() => import('./pages/ThaatExplorer'))
 const Quiz = lazy(() => import('./pages/Quiz'))
+const Timeline = lazy(() => import('./pages/Timeline'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 function PageLoader() {
@@ -50,6 +52,7 @@ export default function App() {
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="/thaats" element={<ThaatExplorer />} />
                 <Route path="/quiz" element={<Quiz />} />
+                <Route path="/timeline" element={<Timeline />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
@@ -57,6 +60,7 @@ export default function App() {
         </main>
         <Footer />
         <BottomNav />
+        <BackToTop />
       </div>
     </BrowserRouter>
   )

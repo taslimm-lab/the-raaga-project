@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, type Ref } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ALL_RAGAS } from '../data/raagasData'
 
@@ -7,9 +7,10 @@ interface Props {
   className?: string
   inputClassName?: string
   onSearch?: () => void
+  inputRef?: Ref<HTMLInputElement>
 }
 
-export default function SearchAutocomplete({ placeholder = 'Search ragas…', className = '', inputClassName = '', onSearch }: Props) {
+export default function SearchAutocomplete({ placeholder = 'Search ragas…', className = '', inputClassName = '', onSearch, inputRef }: Props) {
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
@@ -56,6 +57,7 @@ export default function SearchAutocomplete({ placeholder = 'Search ragas…', cl
       <form onSubmit={handleSubmit}>
         <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px] pointer-events-none">search</span>
         <input
+          ref={inputRef}
           type="text"
           value={query}
           onChange={e => { setQuery(e.target.value); setOpen(true) }}

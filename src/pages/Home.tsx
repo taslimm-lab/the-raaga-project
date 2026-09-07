@@ -115,6 +115,8 @@ export default function Home() {
               <img
                 src={RAAGA_OF_DAY.heroImage}
                 alt={RAAGA_OF_DAY.name}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
               />
             )}
