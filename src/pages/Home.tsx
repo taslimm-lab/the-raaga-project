@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ALL_RAGAS } from '../data/raagasData'
 import { RAGA_FILM_SONGS } from '../data/ragaFilmSongs'
@@ -10,6 +10,8 @@ import { useRagaOfDay } from '../hooks/useRagaOfDay'
 import { useNowRagas } from '../hooks/useNowRagas'
 import { useRecentlyViewed } from '../hooks/useRecentlyViewed'
 import FavoriteButton from '../components/FavoriteButton'
+import { RAGA_COLLECTIONS } from '../data/ragaCollections'
+import { RAGA_TRIVIA } from '../data/ragaTrivia'
 
 const BOLLYWOOD_CONNECTIONS = [
   { title: 'Tujhe Dekha To Yeh Jaana Sanam', movie: 'DDLJ', year: 1995, raga: 'Yaman', ragaId: 'yaman' },
@@ -31,6 +33,20 @@ export default function Home() {
   const { ragas: nowRagas, prahar } = useNowRagas(4)
   const { recent } = useRecentlyViewed()
   const recentRagas = ALL_RAGAS.filter(r => recent.includes(r.id)).sort((a, b) => recent.indexOf(a.id) - recent.indexOf(b.id))
+  const [activeCollection, setActiveCollection] = useState<string | null>(null)
+
+  // Date-seeded rotating trivia
+  const trivia = useMemo(() => {
+    const daysSinceEpoch = Math.floor(Date.now() / 86400000)
+    return RAGA_TRIVIA[daysSinceEpoch % RAGA_TRIVIA.length]
+  }, [])
+
+  const collectionRagas = useMemo(() => {
+    if (!activeCollection) return []
+    const col = RAGA_COLLECTIONS.find(c => c.id === activeCollection)
+    if (!col) return []
+    return col.ragaIds.map(id => ALL_RAGAS.find(r => r.id === id)).filter(Boolean) as typeof ALL_RAGAS
+  }, [activeCollection])
 
   function handleSearch(e: React.FormEvent) {
     e.preventDefault()
@@ -201,6 +217,76 @@ export default function Home() {
           </div>
         </section>
       )}
+
+      {/* Curated Collections */}
+      <section className="py-12 px-6 max-w-7xl mx-auto">
+        <div className="mb-6">
+          <p className="text-xs font-medium text-primary uppercase tracking-wider mb-1">Curated Playlists</p>
+          <h2 className="font-serif text-2xl font-semibold text-on-background">Explore by Mood & Season</h2>
+        </div>
+        <div className="flex flex-wrap gap-2 mb-6">
+          {RAGA_COLLECTIONS.map(col => (
+            <button
+              key={col.id}
+              onClick={() => setActiveCollection(activeCollection === col.id ? null : col.id)}
+              className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors border ${
+                activeCollection === col.id
+                  ? 'bg-primary text-on-primary border-primary shadow-md'
+                  : 'bg-surface border-outline-variant text-on-surface-variant hover:bg-surface-container'
+              }`}
+            >
+              <span className="material-symbols-outlined text-[16px]">{col.icon}</span>
+              {col.label}
+            </button>
+          ))}
+        </div>
+
+        {activeCollection && (() => {
+          const col = RAGA_COLLECTIONS.find(c => c.id === activeCollection)!
+          return (
+            <div className="rounded-2xl border border-outline-variant bg-surface-container-low p-5">
+              <p className="text-sm text-on-surface-variant mb-4">{col.description}</p>
+              <div className="flex flex-wrap gap-2">
+                {collectionRagas.map(r => (
+                  <Link
+                    key={r.id}
+                    to={`/raaga/${r.id}`}
+                    className="flex items-center gap-1.5 px-3 py-2 bg-surface rounded-xl border border-outline-variant hover:border-primary hover:text-primary transition-colors text-sm font-medium text-on-surface"
+                  >
+                    <span className="material-symbols-outlined text-[14px] text-on-surface-variant">music_note</span>
+                    {r.name}
+                    {r.songCount > 0 && (
+                      <span className="text-xs text-on-surface-variant ml-0.5">·{r.songCount}</span>
+                    )}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )
+        })()}
+      </section>
+
+      {/* Did You Know? */}
+      <section className="py-10 px-6 max-w-7xl mx-auto">
+        <div className="rounded-2xl bg-primary-container/30 border border-primary/20 p-6 md:p-8 flex flex-col md:flex-row items-start gap-5">
+          <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center shrink-0">
+            <span className="material-symbols-outlined text-primary text-[20px]">auto_stories</span>
+          </div>
+          <div className="flex-1">
+            <p className="text-xs font-medium text-primary uppercase tracking-wider mb-2">Did You Know?</p>
+            <p className="text-on-surface leading-relaxed text-sm md:text-base">{trivia.fact}</p>
+            {trivia.ragaId && (
+              <Link
+                to={`/raaga/${trivia.ragaId}`}
+                className="inline-flex items-center gap-1 mt-3 text-sm text-primary hover:underline font-medium"
+              >
+                Explore {trivia.raga}
+                <span className="material-symbols-outlined text-[15px]">arrow_forward</span>
+              </Link>
+            )}
+          </div>
+        </div>
+      </section>
 
       {/* Ad — between hero feature and Bollywood section */}
       <div className="max-w-4xl mx-auto px-6">
