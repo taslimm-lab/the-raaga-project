@@ -11,7 +11,8 @@ export default function Footer() {
               <span className="font-serif font-semibold text-lg text-primary">The Raag Project</span>
             </Link>
             <p className="text-sm text-on-surface-variant mt-1">Where Heritage Meets Melody</p>
-            <p className="text-xs text-on-surface-variant/60 mt-2">© {new Date().getFullYear()} The Raag Project. All rights reserved.</p>
+            <p className="text-xs text-on-surface-variant/60 mt-1">© {new Date().getFullYear()} The Raag Project. All rights reserved.</p>
+            <p className="text-xs text-on-surface-variant/40 mt-0.5">All content, data, and code are proprietary and may not be reproduced without permission.</p>
           </div>
 
           <nav className="flex items-center gap-6">
