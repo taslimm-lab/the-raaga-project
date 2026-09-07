@@ -3,6 +3,7 @@ import { ALL_RAGAS } from '../data/raagasData'
 import { RAGA_FILM_SONGS } from '../data/ragaFilmSongs'
 import { youtubeSongUrl, amazonMusicSongUrl, appleMusicSongUrl } from '../data/utils'
 import AdSlot from '../components/AdSlot'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 const RAAGA_OF_DAY = ALL_RAGAS.find(r => r.id === 'yaman')!
 
@@ -15,6 +16,11 @@ const BOLLYWOOD_CONNECTIONS = [
 const totalSongs = Object.values(RAGA_FILM_SONGS).flat().length
 
 export default function Home() {
+  usePageMeta({
+    title: 'The Raag Project — Indian Classical Ragas & Bollywood Connections',
+    description: 'The most comprehensive guide to Indian classical ragas. Explore 174+ ragas, their musical anatomy, legends, emotional qualities, and connections to Bollywood film songs.',
+  })
+
   return (
     <div>
       {/* Hero */}

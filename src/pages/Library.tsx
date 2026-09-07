@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { ALL_RAGAS, ALL_THAATS } from '../data/raagasData'
 import AdSlot from '../components/AdSlot'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 const PRAHARS = [
   { label: 'Dawn', icon: '🌅', times: ['Early Morning', 'Morning'] },
@@ -70,6 +71,11 @@ export default function Library() {
     setThaat(null)
     setPage(1)
   }
+
+  usePageMeta({
+    title: 'Raag Library — Browse 174 Indian Classical Ragas',
+    description: 'Search and filter 174 Indian classical ragas by thaat, time of day, and rasa (emotion). Each raga includes musical anatomy, film song connections, and more.',
+  })
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">

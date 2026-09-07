@@ -4,6 +4,8 @@ import { ALL_RAGAS } from '../data/raagasData'
 import { RAGA_FILM_SONGS } from '../data/ragaFilmSongs'
 import { youtubeRagaUrl, youtubeSongUrl, amazonMusicSongUrl, appleMusicSongUrl } from '../data/utils'
 import AdSlot from '../components/AdSlot'
+import JsonLd from '../components/JsonLd'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 export default function RaagaDetail() {
   const { id } = useParams<{ id: string }>()
@@ -15,6 +17,14 @@ export default function RaagaDetail() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [miniPlayerSong, setMiniPlayerSong] = useState<{ title: string; movie: string } | null>(null)
 
+  usePageMeta({
+    title: raga ? `${raga.name} — ${raga.thaat} Thaat` : 'Raga Not Found',
+    description: raga
+      ? `${raga.name} is a ${raga.time.toLowerCase()} raga of ${raga.thaat} thaat. Vadi: ${raga.vadi}. Rasa: ${raga.rasa.join(', ')}. Explore its musical anatomy, legend, and Bollywood connections.`
+      : 'This raga could not be found in our library.',
+    image: raga?.heroImage,
+  })
+
   if (!raga) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4 text-on-surface-variant">
@@ -25,12 +35,31 @@ export default function RaagaDetail() {
     )
   }
 
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: `${raga.name} — Indian Classical Raga`,
+    description: `${raga.name} is a ${raga.time.toLowerCase()} raga of ${raga.thaat} thaat. Vadi: ${raga.vadi}, Samvadi: ${raga.samvadi}. Rasa: ${raga.rasa.join(', ')}.`,
+    about: {
+      '@type': 'MusicComposition',
+      name: raga.name,
+      musicalKey: raga.vadi,
+      genre: 'Indian Classical Music',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'The Raag Project',
+      url: 'https://the-raaga-project.vercel.app',
+    },
+  }
+
   const related = ALL_RAGAS
     .filter(r => r.id !== raga.id && (r.thaat === raga.thaat || r.rasa.some(rs => raga.rasa.includes(rs))))
     .slice(0, 4)
 
   return (
     <div className="pb-32">
+      <JsonLd schema={schema} />
       {/* Hero */}
       <div className="relative h-72 md:h-96 overflow-hidden">
         {raga.heroImage ? (
