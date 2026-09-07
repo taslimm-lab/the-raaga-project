@@ -16,9 +16,13 @@ export default function Footer() {
             <p className="text-xs text-on-surface-variant/40 mt-0.5">All content, data, and code are proprietary and may not be reproduced without permission.</p>
           </div>
 
-          <nav className="flex items-center gap-6">
+          <nav className="grid grid-cols-2 gap-x-8 gap-y-2">
             <Link to="/" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Home</Link>
             <Link to="/library" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Library</Link>
+            <Link to="/thaats" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Thaat Explorer</Link>
+            <Link to="/compare" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Compare Ragas</Link>
+            <Link to="/quiz" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Raga Quiz</Link>
+            <Link to="/favorites" className="text-sm text-on-surface-variant hover:text-primary transition-colors">My Saved Ragas</Link>
             <Link to="/contribute" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Contribute</Link>
             <Link to="/privacy" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Privacy Policy</Link>
           </nav>

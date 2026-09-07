@@ -9,7 +9,8 @@ export default function BottomNav() {
   const items = [
     { to: '/', icon: 'home', label: 'Home' },
     { to: '/library', icon: 'library_music', label: 'Library' },
-    { to: '/compare', icon: 'compare', label: 'Compare' },
+    { to: '/thaats', icon: 'account_tree', label: 'Thaats' },
+    { to: '/quiz', icon: 'quiz', label: 'Quiz' },
     { to: '/favorites', icon: 'favorite', label: 'Saved' },
   ]
 

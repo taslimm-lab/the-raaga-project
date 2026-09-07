@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ALL_RAGAS } from '../data/raagasData'
 import { RAGA_FILM_SONGS } from '../data/ragaFilmSongs'
@@ -23,6 +23,11 @@ export default function Home() {
   const navigate = useNavigate()
   const [heroSearch, setHeroSearch] = useState('')
   const RAAGA_OF_DAY = useRagaOfDay()
+
+  const surpriseMe = useCallback(() => {
+    const raga = ALL_RAGAS[Math.floor(Math.random() * ALL_RAGAS.length)]
+    navigate(`/raaga/${raga.id}`)
+  }, [navigate])
   const { ragas: nowRagas, prahar } = useNowRagas(4)
   const { recent } = useRecentlyViewed()
   const recentRagas = ALL_RAGAS.filter(r => recent.includes(r.id)).sort((a, b) => recent.indexOf(a.id) - recent.indexOf(b.id))
@@ -69,21 +74,20 @@ export default function Home() {
               Search
             </button>
           </form>
-          <div className="flex items-center justify-center gap-4">
-            <Link
-              to="/library"
-              className="text-sm text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1"
-            >
+          <div className="flex items-center justify-center gap-4 flex-wrap">
+            <Link to="/library" className="text-sm text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
               <span className="material-symbols-outlined text-[16px]">library_music</span>
               Browse all 174 ragas
             </Link>
             <span className="text-on-surface-variant/30">·</span>
-            <Link
-              to="/raaga/bhairavi"
-              className="text-sm text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1"
-            >
-              <span className="material-symbols-outlined text-[16px]">star</span>
-              Featured Raag
+            <button onClick={surpriseMe} className="text-sm text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
+              <span className="material-symbols-outlined text-[16px]">casino</span>
+              Surprise Me
+            </button>
+            <span className="text-on-surface-variant/30">·</span>
+            <Link to="/quiz" className="text-sm text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
+              <span className="material-symbols-outlined text-[16px]">quiz</span>
+              Take the Quiz
             </Link>
           </div>
         </div>

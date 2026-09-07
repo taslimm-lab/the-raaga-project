@@ -26,8 +26,12 @@ const BASE_URL = 'https://the-raaga-project.vercel.app'
 const today = new Date().toISOString().split('T')[0]
 
 const staticRoutes = [
-  { path: '/', priority: '1.0', changefreq: 'weekly' },
+  { path: '/', priority: '1.0', changefreq: 'daily' },
   { path: '/library', priority: '0.9', changefreq: 'weekly' },
+  { path: '/thaats', priority: '0.8', changefreq: 'monthly' },
+  { path: '/compare', priority: '0.7', changefreq: 'monthly' },
+  { path: '/quiz', priority: '0.7', changefreq: 'monthly' },
+  { path: '/favorites', priority: '0.4', changefreq: 'monthly' },
   { path: '/contribute', priority: '0.5', changefreq: 'monthly' },
   { path: '/privacy', priority: '0.3', changefreq: 'yearly' },
 ]

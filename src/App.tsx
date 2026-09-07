@@ -13,14 +13,20 @@ const Contribute = lazy(() => import('./pages/Contribute'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const Compare = lazy(() => import('./pages/Compare'))
 const Favorites = lazy(() => import('./pages/Favorites'))
+const ThaatExplorer = lazy(() => import('./pages/ThaatExplorer'))
+const Quiz = lazy(() => import('./pages/Quiz'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 function PageLoader() {
   return (
-    <div className="min-h-[60vh] flex items-center justify-center">
-      <span className="material-symbols-outlined text-4xl text-primary animate-spin" style={{ animationDuration: '1.5s' }}>
-        autorenew
-      </span>
+    <div className="max-w-4xl mx-auto px-4 py-10 space-y-6">
+      {[...Array(3)].map((_, i) => (
+        <div key={i} className="rounded-2xl border border-outline-variant p-4 space-y-2 animate-pulse">
+          <div className="h-3 w-16 bg-surface-container-high rounded" />
+          <div className="h-5 w-40 bg-surface-container-high rounded" />
+          <div className="h-3 w-28 bg-surface-container-high rounded" />
+        </div>
+      ))}
     </div>
   )
 }
@@ -42,6 +48,8 @@ export default function App() {
                 <Route path="/privacy" element={<PrivacyPolicy />} />
                 <Route path="/compare" element={<Compare />} />
                 <Route path="/favorites" element={<Favorites />} />
+                <Route path="/thaats" element={<ThaatExplorer />} />
+                <Route path="/quiz" element={<Quiz />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
