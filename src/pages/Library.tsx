@@ -4,6 +4,7 @@ import { ALL_RAGAS, ALL_THAATS } from '../data/raagasData'
 import AdSlot from '../components/AdSlot'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { amazonMusicSongUrl, appleMusicSongUrl } from '../data/utils'
+import FavoriteButton from '../components/FavoriteButton'
 
 const PRAHARS = [
   { label: 'Dawn', icon: '🌅', times: ['Early Morning', 'Morning'] },
@@ -197,15 +198,18 @@ export default function Library() {
                 className={`border-t border-outline-variant hover:bg-surface-container-low transition-colors ${i % 2 === 0 ? '' : 'bg-surface-container-lowest'}`}
               >
                 <td className="px-4 py-3">
-                  <Link to={`/raaga/${raga.id}`} className="flex items-center gap-2 group">
-                    <div>
-                      <span className="font-medium text-on-surface group-hover:text-primary transition-colors">{raga.name}</span>
-                      {raga.isCurated && (
-                        <span className="ml-2 px-1.5 py-0.5 bg-primary-container text-on-primary-container rounded text-[10px]">Featured</span>
-                      )}
-                      <p className="text-xs text-on-surface-variant sm:hidden">{raga.thaat}</p>
-                    </div>
-                  </Link>
+                  <div className="flex items-center gap-1">
+                    <FavoriteButton ragaId={raga.id} />
+                    <Link to={`/raaga/${raga.id}`} className="flex items-center gap-2 group">
+                      <div>
+                        <span className="font-medium text-on-surface group-hover:text-primary transition-colors">{raga.name}</span>
+                        {raga.isCurated && (
+                          <span className="ml-2 px-1.5 py-0.5 bg-primary-container text-on-primary-container rounded text-[10px]">Featured</span>
+                        )}
+                        <p className="text-xs text-on-surface-variant sm:hidden">{raga.thaat}</p>
+                      </div>
+                    </Link>
+                  </div>
                 </td>
                 <td className="px-4 py-3 text-on-surface-variant hidden sm:table-cell">{raga.thaat}</td>
                 <td className="px-4 py-3 text-on-surface-variant hidden md:table-cell">{raga.time}</td>

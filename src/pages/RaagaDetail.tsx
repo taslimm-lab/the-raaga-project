@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { ALL_RAGAS } from '../data/raagasData'
 import { RAGA_FILM_SONGS } from '../data/ragaFilmSongs'
@@ -6,7 +6,9 @@ import { youtubeRagaUrl, youtubeSongUrl, amazonMusicSongUrl, appleMusicSongUrl }
 import AdSlot from '../components/AdSlot'
 import JsonLd from '../components/JsonLd'
 import ShareButton from '../components/ShareButton'
+import FavoriteButton from '../components/FavoriteButton'
 import { usePageMeta } from '../hooks/usePageMeta'
+import { useRecentlyViewed } from '../hooks/useRecentlyViewed'
 
 export default function RaagaDetail() {
   const { id } = useParams<{ id: string }>()
@@ -17,6 +19,9 @@ export default function RaagaDetail() {
   const [quizAnswered, setQuizAnswered] = useState<Record<number, number>>({})
   const [isPlaying, setIsPlaying] = useState(false)
   const [miniPlayerSong, setMiniPlayerSong] = useState<{ title: string; movie: string } | null>(null)
+  const { addRecent } = useRecentlyViewed()
+
+  useEffect(() => { if (id) addRecent(id) }, [id])
 
   usePageMeta({
     title: raga ? `${raga.name} — ${raga.thaat} Thaat` : 'Raga Not Found',
@@ -80,12 +85,13 @@ export default function RaagaDetail() {
             {raga.tagline && <p className="text-white/70 italic font-serif text-lg">{raga.tagline}</p>}
           </div>
         </div>
-        {/* Share button */}
-        <div className="absolute top-4 right-4">
+        {/* Share + Favorite buttons */}
+        <div className="absolute top-4 right-4 flex items-center gap-1">
+          <FavoriteButton ragaId={raga.id} className="bg-black/30 hover:bg-black/50" />
           <ShareButton
             title={`${raga.name} — The Raag Project`}
             text={`Explore ${raga.name}, a ${raga.time.toLowerCase()} raga of ${raga.thaat} thaat`}
-            className="bg-black/30 text-white hover:bg-black/50"
+            className="bg-black/30 hover:bg-black/50"
           />
         </div>
 

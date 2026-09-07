@@ -7,6 +7,9 @@ import AdSlot from '../components/AdSlot'
 import NewsletterSignup from '../components/NewsletterSignup'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { useRagaOfDay } from '../hooks/useRagaOfDay'
+import { useNowRagas } from '../hooks/useNowRagas'
+import { useRecentlyViewed } from '../hooks/useRecentlyViewed'
+import FavoriteButton from '../components/FavoriteButton'
 
 const BOLLYWOOD_CONNECTIONS = [
   { title: 'Tujhe Dekha To Yeh Jaana Sanam', movie: 'DDLJ', year: 1995, raga: 'Yaman', ragaId: 'yaman' },
@@ -20,6 +23,9 @@ export default function Home() {
   const navigate = useNavigate()
   const [heroSearch, setHeroSearch] = useState('')
   const RAAGA_OF_DAY = useRagaOfDay()
+  const { ragas: nowRagas, prahar } = useNowRagas(4)
+  const { recent } = useRecentlyViewed()
+  const recentRagas = ALL_RAGAS.filter(r => recent.includes(r.id)).sort((a, b) => recent.indexOf(a.id) - recent.indexOf(b.id))
 
   function handleSearch(e: React.FormEvent) {
     e.preventDefault()
@@ -143,6 +149,52 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Listen Right Now */}
+      {nowRagas.length > 0 && (
+        <section className="py-12 px-6 max-w-7xl mx-auto">
+          <div className="mb-6">
+            <p className="text-xs font-medium text-primary uppercase tracking-wider mb-1">Based on the current time</p>
+            <h2 className="font-serif text-2xl font-semibold text-on-background">Listen Right Now</h2>
+            <p className="text-sm text-on-surface-variant mt-1">Ragas traditionally played during <span className="font-medium">{prahar}</span></p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {nowRagas.map(raga => (
+              <Link key={raga.id} to={`/raaga/${raga.id}`}
+                className="rounded-2xl border border-outline-variant p-4 hover:bg-surface-container-low transition-colors group">
+                <div className="flex items-start justify-between mb-2">
+                  <span className="px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded-full text-xs">{raga.thaat}</span>
+                  <FavoriteButton ragaId={raga.id} />
+                </div>
+                <p className="font-serif font-semibold text-on-surface group-hover:text-primary transition-colors">{raga.name}</p>
+                <p className="text-xs text-on-surface-variant mt-1">{raga.rasa.slice(0, 2).join(' · ')}</p>
+                {raga.songCount > 0 && (
+                  <p className="text-xs text-primary mt-2">{raga.songCount} film songs</p>
+                )}
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Recently Viewed */}
+      {recentRagas.length > 0 && (
+        <section className="py-8 px-6 max-w-7xl mx-auto">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="font-serif text-xl font-semibold text-on-background">Recently Viewed</h2>
+            <Link to="/library" className="text-xs text-primary hover:underline">Browse all</Link>
+          </div>
+          <div className="flex gap-3 overflow-x-auto pb-2 hide-scrollbar">
+            {recentRagas.map(raga => (
+              <Link key={raga.id} to={`/raaga/${raga.id}`}
+                className="shrink-0 rounded-xl border border-outline-variant px-4 py-3 hover:bg-surface-container-low transition-colors min-w-[140px]">
+                <p className="font-medium text-on-surface text-sm">{raga.name}</p>
+                <p className="text-xs text-on-surface-variant mt-0.5">{raga.time}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Ad — between hero feature and Bollywood section */}
       <div className="max-w-4xl mx-auto px-6">

@@ -11,6 +11,8 @@ const Library = lazy(() => import('./pages/Library'))
 const RaagaDetail = lazy(() => import('./pages/RaagaDetail'))
 const Contribute = lazy(() => import('./pages/Contribute'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
+const Compare = lazy(() => import('./pages/Compare'))
+const Favorites = lazy(() => import('./pages/Favorites'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 function PageLoader() {
@@ -38,6 +40,8 @@ export default function App() {
                 <Route path="/raaga/:id" element={<RaagaDetail />} />
                 <Route path="/contribute" element={<Contribute />} />
                 <Route path="/privacy" element={<PrivacyPolicy />} />
+                <Route path="/compare" element={<Compare />} />
+                <Route path="/favorites" element={<Favorites />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
