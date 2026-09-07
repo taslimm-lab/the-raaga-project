@@ -18,6 +18,7 @@ export default function Footer() {
             <Link to="/" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Home</Link>
             <Link to="/library" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Library</Link>
             <Link to="/contribute" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Contribute</Link>
+            <Link to="/privacy" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Privacy Policy</Link>
           </nav>
 
           <div className="flex items-center gap-2">
