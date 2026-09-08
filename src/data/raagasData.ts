@@ -1,5 +1,6 @@
 import { RAGA_DETAILS } from './ragaDetails'
 import { RAGA_FILM_SONGS } from './ragaFilmSongs'
+import { RAGA_KNOWLEDGE } from './ragaKnowledge'
 import { ragaSlug } from './utils'
 
 export interface CuratedRaaga {
@@ -226,6 +227,7 @@ function getSongs(key: string, id: string) {
 
 export function buildAllRagas(): RaagaRow[] {
   const curatedMap = new Map(curatedList.map(c => [c.id, c]))
+  const knowledgeMap = new Map(RAGA_KNOWLEDGE.map(k => [k.id, k]))
   const rows: RaagaRow[] = []
   const seen = new Set<string>()
 
@@ -235,6 +237,7 @@ export function buildAllRagas(): RaagaRow[] {
     seen.add(id)
 
     const curated = curatedMap.get(id)
+    const knowledge = knowledgeMap.get(id)
     const songs = getSongs(key, id)
 
     rows.push({
@@ -254,10 +257,10 @@ export function buildAllRagas(): RaagaRow[] {
       songCount: songs.length,
       isCurated: !!curated,
       heroImage: curated?.heroImage,
-      tagline: curated?.tagline,
-      legend: curated?.legend,
-      deepDive: curated?.deepDive,
-      quiz: curated?.quiz,
+      tagline: curated?.tagline ?? knowledge?.tagline,
+      legend: curated?.legend ?? knowledge?.legend,
+      deepDive: curated?.deepDive ?? knowledge?.deepDive,
+      quiz: curated?.quiz ?? knowledge?.quiz,
     })
   }
 
